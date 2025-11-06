@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Personal y Formulario - Examen</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="light" data-font="default">
+    
+    <header class="controls">
+        <button id="set-light-theme">Modo Claro</button> 
+        <button id="set-dark-theme">Modo Oscuro</button>
+        <button id="toggle-font">Cambiar Tipografía</button>
+    </header>
+
+    <main class="container">
+        
+        <section id="ficha-personal" class="page">
+            <h2>Ficha Personal</h2>
+            <div class="card">
+                <img src="img/Foto perfil.jpeg" alt="Foto Personal" class="profile-photo"> 
+                
+                <div class="data">
+                    <h3>Nombre y Apellido: Milena Janiot</h3>
+                    
+                    <h4>Datos Personales:</h4>
+                    <ul>
+                        <li>Email: mjaniot@uade.edu.ar</li>
+                        <li>Teléfono: +54 9 11 3906-2711</li>
+                        <li>Ubicación: Ciudad Autónoma de Buenos Aires, Argentina</li>
+                    </ul>
+
+                    <h4>Páginas/Links:</h4>
+                    <a href="https://github.com/MileJ03" target="_blank" class="github-link">
+                        Mi Perfil de GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="formulario-contacto" class="page">
+            <h2>Formulario de Contacto y Validación</h2>
+
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre(*)</label>
+                    <input type="text" id="nombre" name="nombre" required minlength="2">
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Apellido (*)</label>
+                    <input type="text" id="apellido" name="apellido" required minlength="2">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email (*)</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensaje">Mensaje (*)</label>
+                    <textarea id="mensaje" name="mensaje" required minlength="10"></textarea>
+                </div>
+                
+                <button type="submit">Enviar Formulario</button>
+            </form>
+            <p class="validation-message" id="success-message" style="display: none;"> Formulario validado y enviado con éxito.</p>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

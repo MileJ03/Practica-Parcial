@@ -1,0 +1,235 @@
+/* 1. Definición de Tipografías (Usando @import de Google Fonts - CDN) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* Variables de Color (Modo Claro/Light - Valores por defecto) */
+:root 
+{
+    /* Definiciones de fuentes para el cambio JQuery */
+    --font-default: 'Roboto', sans-serif;
+    --font-alt: 'Montserrat', sans-serif;
+    
+    --bg-color: #f4f4f4; /* Fondo principal */
+    --text-color: #333; /* Color de texto */
+    --card-bg: #ffffff; /* Fondo de la tarjeta/sección */
+    --primary-color: #9f48ef; /* Color de énfasis/botones (Morado) */
+    --error-color: #dc3545; /* Color de error */
+    /* Eliminamos las definiciones duplicadas de --font-default y --font-alt */
+}
+
+/* Variables de Color (Modo Oscuro/Dark) */
+body[data-theme="dark"] 
+{
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --primary-color: #4b177c;
+    --error-color: #ff4d4d;
+}
+
+/* 2. Estilos Globales y Tipografía Dinámica */
+body 
+{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-default); /* Usa la variable de fuente 'Roboto' por defecto */
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Cambio de Tipografía - Usa la fuente 'Montserrat' cuando data-font es 'alt' */
+body[data-font="alt"] 
+{
+    font-family: var(--font-alt);
+}
+
+.container 
+{
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* 3. Estilos de Ficha Personal */
+.card 
+{
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    align-items: center;
+    background-color: var(--card-bg);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* **Formato Circular en los bordes de la imagen** (Requisito) */
+.profile-photo 
+{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Esto hace el formato circular */
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+.data ul 
+{
+    list-style: none;
+    padding: 0;
+}
+
+.github-link 
+{
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+.github-link:hover 
+{
+    text-decoration: underline;
+}
+
+/* 4. Estilos de Formulario */
+.form-group 
+{
+    margin-bottom: 15px;
+}
+
+.form-group label 
+{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, .form-group textarea 
+{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Estilo para los mensajes de error de JQuery Validate */
+label.error 
+{
+    color: var(--error-color);
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
+}
+
+button[type="submit"] 
+{
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover 
+{
+    background-color: #7d32c3;
+}
+
+/* 5. Estilos de Controles (Claro/Oscuro, Tipografía) */
+.controls 
+{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.controls button 
+{
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    transition: opacity 0.3s;
+}
+
+/* Estilo para el mensaje de éxito */
+.validation-message 
+{
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/*## 📱 6. Media Queries para Responsividad (Móviles)
+
+/* Aplicar estos estilos cuando el ancho de la pantalla sea de 600px o menos */
+@media (max-width: 600px) 
+{
+    
+    /* Adaptar el padding global del body */
+    body 
+    {
+        padding: 10px;
+    }
+
+    /* Reducir el padding del contenedor principal */
+    .container 
+    {
+        padding: 20px 15px;
+    }
+
+    /* Cambiar la disposición de la tarjeta de Ficha Personal */
+    .card 
+    {
+        /* Pasa de fila (flex) a columna (apilado vertical) */
+        flex-direction: column; 
+        text-align: center; /* Centrar el texto en la vista móvil */
+        gap: 15px; /* Reducir el espacio entre elementos */
+    }
+
+    /* Ajustar el tamaño de la foto para móviles */
+    .profile-photo 
+    {
+        width: 120px; /* Reducir el tamaño de la foto */
+        height: 120px;
+        margin: 0 auto; /* Asegurar que la foto esté centrada */
+    }
+
+    /* Centrar la lista de datos */
+    .data ul 
+    {
+        text-align: left; /* Mantener la alineación izquierda en las listas si es preferible */
+        margin: 0 auto;
+        padding-left: 20px; /* Añadir un poco de espacio si la lista tiene viñetas (aunque se eliminaron) */
+    }
+    
+    /* Asegurar que los botones de control no se peguen tanto */
+    .controls button 
+    {
+        display: block; /* Cada botón en su propia línea */
+        width: 90%; 
+        margin: 8px auto; 
+    }
+    
+    /* Reducir el tamaño de la tipografía de los títulos */
+    h2 
+    {
+        font-size: 1.5em;
+    }
+}
