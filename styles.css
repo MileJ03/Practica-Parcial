@@ -14,6 +14,7 @@
     --card-bg: #ffffff; /* Fondo de la tarjeta/sección */
     --primary-color: #9f48ef; /* Color de énfasis/botones (Morado) */
     --error-color: #dc3545; /* Color de error */
+    --base-font-size: 16px;
     /* Eliminamos las definiciones duplicadas de --font-default y --font-alt */
 }
 
@@ -36,6 +37,7 @@ body
     margin: 0;
     padding: 20px;
     transition: background-color 0.3s, color 0.3s;
+    font-size: var(--base-font-size);
 }
 
 /* Cambio de Tipografía - Usa la fuente 'Montserrat' cuando data-font es 'alt' */
@@ -153,8 +155,14 @@ button[type="submit"]:hover
     margin-bottom: 20px;
 }
 
-.controls button 
+.controls button, .controls .control-button 
 {
+    /* Hacemos que el link <a> se comporte como un botón */
+    display: inline-block; 
+    text-decoration: none; /* Quitar el subrayado del link */
+    line-height: normal; /* Ajustar la altura de línea */
+    text-align: center;
+
     padding: 10px 20px;
     margin: 5px;
     border: none;

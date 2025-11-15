@@ -79,5 +79,72 @@ $(document).ready(function()
         }
     );
 
+    // ===========================================
+    // 4. JQUERY: AUMENTAR Y DISMINUIR TAMAÑO DE LETRA
+    // ===========================================
+    const $root = $(':root');
+    const $increaseFontButton = $('#increase-font');
+    const $decreaseFontButton = $('#decrease-font');
+    
+    // Configuración inicial y límites
+    const STEP = 2; // px a aumentar/disminuir
+    const MIN_SIZE = 12; 
+    const MAX_SIZE = 24; 
+    
+    // Función para obtener el tamaño actual de la variable CSS
+    function getCurrentFontSize() 
+    {
+        const sizeString = $root.css('--base-font-size') || '16px';
+        return parseFloat(sizeString);
+    }
+
+    // Función para establecer el nuevo tamaño de la variable CSS
+    function setFontSize(newSize) 
+    {
+        // Aseguramos que el tamaño esté dentro de los límites
+        newSize = Math.max(MIN_SIZE, Math.min(MAX_SIZE, newSize));
+        
+        $root.css('--base-font-size', `${newSize}px`);
+        localStorage.setItem('fontSize', newSize);
+    }
+    
+    // Cargar el tamaño guardado o usar el default
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) 
+        {
+        setFontSize(parseFloat(savedFontSize));
+        } 
+    else 
+        {
+        // Establecer el tamaño inicial del CSS si no hay nada guardado
+        setFontSize(getCurrentFontSize()); 
+        }
+
+    // Evento para AUMENTAR la letra
+    $increaseFontButton.on('click', function() 
+    {
+        let currentSize = getCurrentFontSize();
+        setFontSize(currentSize + STEP);
+    });
+
+    // Evento para DISMINUIR la letra
+    $decreaseFontButton.on('click', function() 
+    {
+        let currentSize = getCurrentFontSize();
+        setFontSize(currentSize - STEP);
+    });
+
+    // ===========================================
+    // 5. JQUERY: BOTÓN DE INICIO / RECARGA (FUNCIONALIDAD DE RESET)
+    // ===========================================
+    const $homeButton = $('#home-button');
+
+    $homeButton.on('click', function() 
+    {
+        console.log("Recargando la página, manteniendo las preferencias de accesibilidad.");
+        // No se borra nada de localStorage.
+        window.location.reload(); 
+    });
+
 }
 ); // <--- ¡AQUÍ TERMINA EL BLOQUE DE EJECUCIÓN!
